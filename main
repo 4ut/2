@@ -1,0 +1,191 @@
+
+
+--// Vars \\--
+
+local AutoPickupFunc
+local HitboxFunc
+local Hitbox2Func
+local Weapons = false
+local WeaponsFunc
+
+
+local HugeHeadFunc
+local HugeHead
+
+AutoPickupFunc = function()
+    for _,v in pairs(workspace:GetDescendants()) do
+        if v:IsA("TouchTransmitter") and v.Parent.Name == "Gungiver" or v.Parent.Name == "GunGiver" or v.Parent.Name == "Giver" or v.Parent.Name == "Give" or v.Parent.Name == "Handle" and v.Parent.Parent.Name == "C4Giver"  then
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0)
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1)
+        end
+        end
+end
+
+
+HitboxFunc = function()
+       if game.Players.LocalPlayer.Character:FindFirstChild("Darkheart") then
+        game.Players.LocalPlayer.Character:FindFirstChild("Darkheart").Handle.Size = Vector3.new(50,50,50) 
+       elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Darkheart") then
+        game.Players.LocalPlayer.Backpack:FindFirstChild("Darkheart").Handle.Size = Vector3.new(50,50,50) 
+    end
+end
+
+
+Hitbox2Func = function()
+    if game.Players.LocalPlayer.Character:FindFirstChild("Illumina") then
+     game.Players.LocalPlayer.Character:FindFirstChild("Illumina").Handle.Size = Vector3.new(50,50,50) 
+    elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Illumina") then
+     game.Players.LocalPlayer.Backpack:FindFirstChild("Illumina").Handle.Size = Vector3.new(50,50,50) 
+ end
+end
+
+
+WeaponsFunc = function()
+while Weapons do task.wait(0.7)
+for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+    if v.Name == "Range" or v.Name == "Damage"  then
+        v.Value = 10000000
+    elseif v.Name == "ReloadTime" or v.Name =="Spread" or v.Name =="FireRate" then
+        v.Value = 0 
+    end
+    end
+end
+
+end
+
+    
+HugeHeadFunc = function()
+    while HugeHead do task.wait()
+        for i,v in next, game:GetService('Players'):GetPlayers() do
+        if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+        pcall(function()
+        v.Character.HumanoidRootPart.Size = Vector3.new(20,20,20)
+        v.Character.HumanoidRootPart.Transparency = 0.9
+        v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Light Royal blue")
+        v.Character.HumanoidRootPart.Material = "Neon"
+        v.Character.HumanoidRootPart.CanCollide = false 
+        end)
+        end
+        end
+        end
+        for i,v in next, game:GetService('Players'):GetPlayers() do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+            pcall(function()
+            v.Character.HumanoidRootPart.Size = Vector3.new(1,1,1)
+            v.Character.HumanoidRootPart.Transparency = 1
+            v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Light Royal blue")
+            v.Character.HumanoidRootPart.Material = "Neon"
+            v.Character.HumanoidRootPart.CanCollide = false 
+            end)
+            end
+            end
+end
+
+--// LIB \\--
+local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+
+local X = Material.Load({
+	Title = "2PGFT | Lofi™",
+	Style = 4,
+	SizeX = 300,
+	SizeY = 250,
+	Theme = "Dark",
+	ColorOverrides = {
+    		MainFrame = Color3.fromRGB(0, 0, 0),
+    		Minimise = Color3.fromRGB(214, 1, 1),
+    		MinimiseAccent = Color3.fromRGB(5, 0, 0),
+    		Maximise = Color3.fromRGB(25,255,0),
+    		MaximiseAccent = Color3.fromRGB(0,255,110),
+    		NavBar = Color3.fromRGB(255, 255, 255),
+    		NavBarAccent = Color3.fromRGB(0, 0, 0),
+    		NavBarInvert = Color3.fromRGB(235,235,235),
+    		TitleBar = Color3.fromRGB(0, 0, 0),
+    		TitleBarAccent = Color3.fromRGB(255, 255, 255),
+    		Overlay = Color3.fromRGB(175,175,175),
+    		Banner = Color3.fromRGB(0, 182, 232),
+    		BannerAccent = Color3.fromRGB(255,255,255),
+    		Content = Color3.fromRGB(82, 82, 82),
+    		Button = Color3.fromRGB(65, 65, 65),
+    		ButtonAccent = Color3.fromRGB(255, 255, 255),
+    		ChipSet = Color3.fromRGB(235,235,235),
+    		ChipSetAccent = Color3.fromRGB(75,75,75),
+    		DataTable = Color3.fromRGB(235,235,235),
+    		DataTableAccent = Color3.fromRGB(75,75,75),
+    		Slider = Color3.fromRGB(65, 65, 65),
+    		SliderAccent = Color3.fromRGB(255, 255, 255),
+    		Toggle = Color3.fromRGB(255, 255, 255),
+    		ToggleAccent = Color3.fromRGB(0, 0, 0),
+    		Dropdown = Color3.fromRGB(75,75,75),
+    		DropdownAccent = Color3.fromRGB(125,125,125),
+    		ColorPicker = Color3.fromRGB(75,75,75),
+    		ColorPickerAccent = Color3.fromRGB(235,235,235),
+    		TextField = Color3.fromRGB(65, 65, 65),
+    		TextFieldAccent = Color3.fromRGB(255,255,255),
+    }
+})
+
+local main = X.New({
+	Title = "MAIN"
+})
+
+
+
+
+local HitboxButton = main.Button({
+    Text = "Dark Heart Hitbox Extender",
+    Callback = function()
+        pcall(function()
+            HitboxFunc()
+        end)
+    end,
+})
+
+local Hitbox2Button = main.Button({
+    Text = "Illumina Hitbox Extender",
+    Callback = function()
+        pcall(function()
+            Hitbox2Func()
+        end)
+    end,
+})
+
+
+
+local AutoGetToolsButton = main.Button({
+    Text = "Auto Get All Tools",
+    Callback = function()
+        pcall(function()
+            AutoPickupFunc()
+        end)
+    end,
+})
+
+
+local hugehead = main.Toggle({
+    Text = "Hitbox Extender",
+    Callback = function(v)
+        HugeHead = v
+        
+        if HugeHead then
+            pcall(function()
+                HugeHeadFunc()
+            end)
+        end
+    end
+})
+
+
+
+
+local AutoOp = main.Toggle({
+    Text = "Auto Make Guns Op",
+    Callback = function(v)
+        Weapons = v
+        
+        if Weapons then
+            pcall(function()
+                WeaponsFunc()
+            end)
+        end
+    end
+})
